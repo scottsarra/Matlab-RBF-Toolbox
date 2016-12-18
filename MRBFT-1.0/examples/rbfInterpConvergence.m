@@ -1,4 +1,4 @@
-% rbfInterpConvergence
+% % rbfInterpConvergence
 %
 % Convergence rate of a RBF interpolant with a fixed shape parameter and 
 % increasing N.  The convergence is geometric (also called spectral or 
@@ -14,10 +14,10 @@ safe = true;   % backslash rather than forcing Cholesky
 s = mp('2.0');  pi = mp('pi');
 
 M = 200;
-x = mp( linspace(-1,1,M)' );             % evaluation points
+x = linspace(mp(-1),mp(1),M)';             % evaluation points
 fe = exp(sin(pi*x));
 
-Nv = mp('5'):mp('10'):mp('110');
+Nv = mp(5:10:110);
 Ns = length(Nv);
 er = mp( zeros(Ns,1) );
 
@@ -25,7 +25,7 @@ for k = 1:Ns
     
     N = Nv(k);
     
-    xc = -cos(pi*(0:N-1)/(N-1))';   % boundary clustered centers
+    xc = -cos(pi*mp(0:N-1)/(N-1))';   % boundary clustered centers
     r = rbfx.distanceMatrix1d(xc);
     f = exp(sin(pi*xc));
     
